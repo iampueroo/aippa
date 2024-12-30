@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./pages/App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router";
-import Words from "./pages/Words";
+import PageWords from "./pages/PageWords";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
@@ -14,7 +14,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/topic/:topic" element={<Words />} />
+        <Route path="/topic/:topic" element={<PageWords />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

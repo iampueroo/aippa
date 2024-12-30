@@ -19,7 +19,7 @@ function useAppNavigation(verbs: POSVerb[]) {
   return { verb, next, previous };
 }
 
-function Words() {
+function PageWords() {
   const { topic } = useParams();
   const verbs: POSVerb[] = topic ? VerbMapping[topic as VocabularyTopics] : [];
   const { verb, next, previous } = useAppNavigation(verbs);
@@ -41,4 +41,4 @@ function Words() {
   );
 }
 
-export default Words;
+export default PageWords;
