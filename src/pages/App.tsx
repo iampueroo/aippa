@@ -16,9 +16,10 @@ function TopicSelect({
     <select
       className="appearance-none bg-slate-900 border border-transparent hover:border-gray-500 mx-2 p-1 rounded shadow leading-tight focus:outline-none focus:shadow-outline text-white inline-block font-medium underline decoration-2"
       onChange={(event) => onSelect(event.target.value as VocabularyTopics)}
+      value={selectedTopic}
     >
       {topics.map((topic) => (
-        <option key={topic} value={topic} selected={topic === selectedTopic}>
+        <option key={topic} value={topic}>
           {topic}
         </option>
       ))}
