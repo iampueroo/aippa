@@ -1,7 +1,8 @@
+import { POSVerb } from "@ezl-types";
 import React from "react";
-import { POSVerb } from "./types";
-import { verbs } from "./data";
-import { VerbDisplay } from "./components/VerbDisplay";
+import { AppFullLayout } from "../components/AppFullLayout";
+import { VerbDisplay } from "../components/VerbDisplay";
+import { verbs } from "../data";
 
 function useAppNavigation(verbs: POSVerb[]) {
   const [index, setIndex] = React.useState(0);
@@ -11,7 +12,7 @@ function useAppNavigation(verbs: POSVerb[]) {
   return { verb, next, previous };
 }
 
-function App() {
+function Words() {
   const { verb, next, previous } = useAppNavigation(verbs);
   const onKeyDown = (event: React.KeyboardEvent) => {
     switch (event.key) {
@@ -25,14 +26,10 @@ function App() {
   };
 
   return (
-    <div
-      className="h-full flex justify-center items-center bg-slate-900 text-white"
-      tabIndex={0}
-      onKeyDown={onKeyDown}
-    >
+    <AppFullLayout tabIndex={0} onKeyDown={onKeyDown}>
       <VerbDisplay {...verb} />
-    </div>
+    </AppFullLayout>
   );
 }
 
-export default App;
+export default Words;
