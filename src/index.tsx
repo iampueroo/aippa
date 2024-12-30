@@ -14,7 +14,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/topic" element={<Words />} />
+        <Route path="/topic/:topic" element={<Words />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
