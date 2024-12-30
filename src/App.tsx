@@ -1,34 +1,35 @@
+import React from "react";
 import { POSVerb } from "./types";
+import { verbs } from "./data";
+import { VerbDisplay } from "./components/VerbDisplay";
 
-function Pill({ label }: { label: string }) {
-  // Generates a pill with the given label
-  return (
-    <span className="bg-slate-700 text-white rounded-full px-2 py-1 text-sm">
-      {label[0].toUpperCase() + label.slice(1)}
-    </span>
-  );
-}
-
-function VerbDisplay(word: POSVerb) {
-  return (
-    <div className="flex flex-col items-center space-y-1">
-      <h3 className="text-3xl font-extralight italic">
-        {word.shortEnglishTranslation}
-      </h3>
-      <h1 className="text-7xl font-semibold pb-2">{word.lemma}</h1>
-      <Pill label={word.partOfSpeech} />
-    </div>
-  );
+function useAppNavigation(verbs: POSVerb[]) {
+  const [index, setIndex] = React.useState(0);
+  const next = () => setIndex((index + 1) % verbs.length);
+  const previous = () => setIndex((index - 1 + verbs.length) % verbs.length);
+  const verb = verbs[index];
+  return { verb, next, previous };
 }
 
 function App() {
-  const verb: POSVerb = {
-    partOfSpeech: "verb",
-    lemma: "haben",
-    shortEnglishTranslation: "to have",
+  const { verb, next, previous } = useAppNavigation(verbs);
+  const onKeyDown = (event: React.KeyboardEvent) => {
+    switch (event.key) {
+      case "ArrowRight":
+        next();
+        break;
+      case "ArrowLeft":
+        previous();
+        break;
+    }
   };
+
   return (
-    <div className="h-full flex justify-center items-center bg-slate-900 text-white">
+    <div
+      className="h-full flex justify-center items-center bg-slate-900 text-white"
+      tabIndex={0}
+      onKeyDown={onKeyDown}
+    >
       <VerbDisplay {...verb} />
     </div>
   );

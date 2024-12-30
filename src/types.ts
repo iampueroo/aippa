@@ -1,13 +1,16 @@
 type GenderDE = "masculine" | "feminine" | "neuter";
 
 type POSBase = {
-  lemma: String;
-  shortEnglishTranslation: String;
+  lemma: string;
+  shortEnglishTranslation: string;
 };
 
 export type POSVerb = POSBase & {
   partOfSpeech: "verb";
+  pastParticiple: string;
+  pastParticipleAuxiliaryVerb: string;
   isReflexive?: boolean;
+  isSplittable?: boolean;
 };
 
 type POSNoun = POSBase & {
